@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  bookstorebd:
+    container_name: ${DB_DIALECT}
+    image: postgres:15.5-bullseye
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+
+  adminer:
+    depends_on:
+      - bookstorebd
+    image: adminer:standalone
+    container_name: adminer-node
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  boostore-vol:
+    external: false

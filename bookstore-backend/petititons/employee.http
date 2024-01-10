@@ -1,0 +1,65 @@
+
+POST http://localhost:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+X-CSRF-Token: PEsdnyud-fX5RpGyyGwC6NMVNroNzBgoiUGw
+
+{
+  "username":"admin",
+  "password" : "123456"
+}
+
+###
+
+POST http://localhost:3000/api/admin/employees HTTP/1.1
+Content-Type: application/json
+X-CSRF-Token: dVMJlYVd-tej68MYhCJjON3MwXE9XAicR4LM
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2OTE1ZmY2LTA1OWItNDM0MC1hNmI4LTE1MWY5NTVlMmIwZCIsIm5hbWUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDQ4NDI0NTUsImV4cCI6MTcwNDkyODg1NX0.WFfKQvJQ2t4hyWuU7He5tmC5ZFcEBe3B_cF-zmo5PpE
+
+{
+  "name":"user3",
+  "lastName":"user3",
+  "username":"user3",
+  "password":"123456",
+  "role":["ventas", "contabilidad"]
+}
+
+###
+
+GET http://localhost:3000/api/admin/employees HTTP/1.1
+Content-Type: application/json
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2OTE1ZmY2LTA1OWItNDM0MC1hNmI4LTE1MWY5NTVlMmIwZCIsIm5hbWUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDQ4NDI0NTUsImV4cCI6MTcwNDkyODg1NX0.WFfKQvJQ2t4hyWuU7He5tmC5ZFcEBe3B_cF-zmo5PpE
+
+###
+
+GET http://localhost:3000/api/admin/employees/daae0d4d-c51e-44bc-87ff-5b98da82ae44 HTTP/1.1
+Content-Type: application/json
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU4MWNkMmEyLTlmNTgtNDdlZC05MzI0LWNmMzVlYzI2NTIwNyIsIm5hbWUiOiJkaWVnbyIsInVzZXJuYW1lIjoic3VwZXJ1c2VyIiwiaWF0IjoxNzA0NDkzOTU4LCJleHAiOjE3MDQ1ODAzNTh9.gJDJxVPWkzkwBYb6S8BL3q0hfYixveTHgUNLZG9IK24
+
+
+###
+
+PATCH  http://localhost:3000/api/admin/employees/66dda398-defb-4e33-b868-7d6212881aa8 HTTP/1.1
+Content-Type: application/json
+X-CSRF-Token: PEsdnyud-fX5RpGyyGwC6NMVNroNzBgoiUGw
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2OTE1ZmY2LTA1OWItNDM0MC1hNmI4LTE1MWY5NTVlMmIwZCIsIm5hbWUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDQ4NDI0NTUsImV4cCI6MTcwNDkyODg1NX0.WFfKQvJQ2t4hyWuU7He5tmC5ZFcEBe3B_cF-zmo5PpE
+{
+  "name":"Jose",
+  "lastName":"Josele",
+  "password":"123456",
+  "role":["ventas", "compras", "contabilidad"]
+}
+
+###
+
+DELETE  http://localhost:3000/api/admin/employees/858af27e-71b2-4823-bb54-8c8eae72fccb HTTP/1.1
+Content-Type: application/json
+X-CSRF-Token: PEsdnyud-fX5RpGyyGwC6NMVNroNzBgoiUGw
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2OTE1ZmY2LTA1OWItNDM0MC1hNmI4LTE1MWY5NTVlMmIwZCIsIm5hbWUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDQ4NDI0NTUsImV4cCI6MTcwNDkyODg1NX0.WFfKQvJQ2t4hyWuU7He5tmC5ZFcEBe3B_cF-zmo5PpE
+
+
+###
+
+GET  http://localhost:3000/api/admin/employees-deleted HTTP/1.1
+Content-Type: application/json
+X-CSRF-Token: PEsdnyud-fX5RpGyyGwC6NMVNroNzBgoiUGw
+Cookie: bearer_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI2OTE1ZmY2LTA1OWItNDM0MC1hNmI4LTE1MWY5NTVlMmIwZCIsIm5hbWUiOiJhZG1pbiIsInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE3MDQ4NDY3MzgsImV4cCI6MTcwNDkzMzEzOH0.gmq3zk-M1CBt4wXoyNb5Pfmpxjb8kp31RIP0TSeyQQ4
