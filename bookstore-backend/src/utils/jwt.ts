@@ -6,7 +6,8 @@ import bcrypt from "bcrypt";
 interface Data {
 	id: string;
 	name: string;
-	username: string;
+	username?: string;
+	email?: string;
 }
 
 const generateId = () =>

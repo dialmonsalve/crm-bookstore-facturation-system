@@ -1,25 +1,21 @@
 import express, { Router } from "express";
-import {
-	authentication,
-	create,
-	getAll,
-	getOneById,
-	update,
-	remove,
-	getEmployeesDeleted,
-} from "../controllers";
+import { employee } from "../controllers";
 import { protectPath } from "../middleware/validateJWT";
 import { isAdmin, isValidUUID } from "../middleware/reqValidations";
 import { validFields } from "../middleware/validFields";
 import { check } from "express-validator";
 import { usernameExists, isValidRole } from "../utils/dbValidations";
 
-const employeeRout = Router();
-employeeRout.use(express.json());
+const employeeRoute = Router();
+employeeRoute.use(express.json());
 
-employeeRout.post("/auth/login", authentication);
+employeeRoute.post("/admin/auth/login", [
+	check("username", "Campo username es requerido").notEmpty(),
+	check("password", "Campo password es requerido").notEmpty(),
+	validFields,
+],employee.authentication);
 
-employeeRout.post(
+employeeRoute.post(
 	"/admin/employees",
 	[
 		protectPath,
@@ -62,22 +58,22 @@ employeeRout.post(
 			.custom(isValidRole),
 		validFields,
 	],
-	create,
+	employee.create,
 );
 
-employeeRout.get(
+employeeRoute.get(
 	"/admin/employees",
 	[protectPath, isAdmin, validFields],
-	getAll,
+	employee.getAll,
 );
 
-employeeRout.get(
+employeeRoute.get(
 	"/admin/employees/:id",
 	[protectPath, isAdmin, isValidUUID, validFields],
-	getOneById,
+	employee.getOneById,
 );
 
-employeeRout.patch(
+employeeRoute.patch(
 	"/admin/employees/:id",
 	[
 		protectPath,
@@ -108,19 +104,19 @@ employeeRout.patch(
 			.custom(isValidRole),
 		validFields,
 	],
-	update,
+	employee.update,
 );
 
-employeeRout.delete(
+employeeRoute.delete(
 	"/admin/employees/:id",
 	[protectPath, isAdmin, isValidUUID, validFields],
-	remove,
+	employee.remove,
 );
 
-employeeRout.get(
+employeeRoute.get(
 	"/admin/employees-deleted/",
 	[protectPath, isAdmin, validFields],
-	getEmployeesDeleted,
+	employee.getEmployeesDeleted,
 );
 
-export default employeeRout;
+export default employeeRoute;

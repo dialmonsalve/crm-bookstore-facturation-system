@@ -39,4 +39,27 @@ const isValidUUID = (req: Request, res: Response, next: NextFunction) => {
 
 	next();
 };
-export { isAdmin, isValidUUID};
+
+const isEmployee = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+	const { employee } = req;
+
+	const isEmployee = await Employee.findByPk(employee?.id);
+
+	if (!req.employee) {
+		return res.status(500).json({
+			msg: "Algo salió mal, Quiere verificar el rol sin validar el token primero",
+		});
+	}
+
+	if (!employee?.role || employee.role.length <= 0 || !isEmployee) {
+
+		return res
+			.status(401)
+			.json({ msg: "Usuario no autorizado para realizar esta acción" });
+
+	}
+	next();
+
+}
+
+export { isAdmin, isValidUUID, isEmployee };

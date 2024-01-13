@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 
 import config from "./utils/envConfig";
 
-import { employeeRoute } from "./routers";
+import { clientRoute, employeeRoute } from "./routers";
 import db from "./config/db";
 
 const app = express();
@@ -14,6 +14,7 @@ app.use(cookieParser());
 app.use(csrf({ cookie: true }));
 
 app.use("/api", employeeRoute);
+app.use("/api", clientRoute)
 
 db.authenticate()
 	.then((res) => {

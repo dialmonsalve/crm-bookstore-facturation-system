@@ -32,7 +32,7 @@ const Client = db.define<IClient>(
 		phone: DataTypes.STRING,
 		token: DataTypes.STRING,
 		isActive: DataTypes.BOOLEAN,
-		isDeleted: DataTypes.BOOLEAN,
+		isDeleted: { type: DataTypes.BOOLEAN, defaultValue: false },
 		isConfirm: DataTypes.BOOLEAN,
 		image: DataTypes.BOOLEAN,
 	},
